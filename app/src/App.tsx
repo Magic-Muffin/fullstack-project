@@ -7,7 +7,7 @@ import useFetch from './hooks/useFetch';
 import AppOverlay from './components/AppOverlay';
 import AppNavbar from './components/AppNavbar';
 import AppLoginForm from './components/AppLoginForm';
-import { Container, Card, Button, CardGroup } from 'react-bootstrap';
+import { Container, Card, Button } from 'react-bootstrap';
 
 const SidebarExampleSidebar = () => {
   const [visible, setVisible] = useState(false)
@@ -49,9 +49,14 @@ function App() {
         setShowOverlay(!showOverlay);
         console.log(showOverlay); // Open/close overlay
         break;
-    
     case "search":
       console.log("search");  
+      break;
+    case "settings":
+      console.log("settings");  
+      break;
+    case "account":
+      console.log("account");  
       break;
     
       default:
@@ -83,7 +88,6 @@ function App() {
           <Card>
             <Card.Body>
               <AppLoginForm/>
-              <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
           <Card>
