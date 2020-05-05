@@ -1,0 +1,3 @@
+interface ClickEvent {
+    id: string;
+}

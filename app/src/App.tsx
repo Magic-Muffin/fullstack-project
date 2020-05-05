@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 // import AppSetting from './config';
-import TextField from './TextField';
+import TextField from './components/TextField';
 import useFetch from './hooks/useFetch';
 import AppOverlay from './components/AppOverlay';
 import AppNavbar from './components/AppNavbar';
@@ -38,10 +38,28 @@ function App() {
   }, []);
 
   useFetch("https://swapi.dev/api/planets/1/?format=wookiee");
+
+
+  function handleNavbarCallback(val:ClickEvent) {
+    switch (val.id) {
+      case "home":
+        console.log("home");  
+        break;
+    
+    case "search":
+      console.log("search");  
+      break;
+    
+      default:
+        break;
+    }
+  }
+
+
   return (
     
     <div className="App">
-      <AppNavbar/>
+      <AppNavbar callback={handleNavbarCallback}/>
       {{loaded} && SidebarExampleSidebar()}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
