@@ -35,6 +35,7 @@ function App() {
   
   const [loaded, setLoaded] = useState<boolean>(false);
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
+  const [page, setPage] = useState<string>("home");
 
   useEffect(()=>{
     setLoaded(true);
@@ -43,53 +44,31 @@ function App() {
   useFetch("https://swapi.dev/api/planets/1/?format=wookiee");
 
 
-  function handleNavbarCallback(val:ClickEvent) {
-    switch (val.id) {
+  function resolvePage(){
+    switch (page) {
       case "home":
-        setShowOverlay(!showOverlay);
-        console.log(showOverlay); // Open/close overlay
-        break;
-    case "search":
-      console.log("search");  
-      break;
-    case "settings":
-      console.log("settings");  
-      break;
-    case "account":
-      console.log("account");  
-      break;
-    
-      default:
-        break;
-    }
-  }
-
-
-  return (
-    
-    <div className="App">
-      <Container>
-        <AppNavbar callback={handleNavbarCallback}/>
-        {{loaded} && SidebarExampleSidebar()}
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header> */}
-        {/* <CardGroup> */}
-          <Card>
-            <Card.Img className="App-logo" variant="top" src={logo} />
-            <Card.Body>
-              <Card.Title>Some Info</Card.Title>
-              <Card.Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem repudiandae eum aliquam sunt consectetur voluptate nisi beatae. Voluptatibus incidunt, veritatis alias dolorum ipsum dolores blanditiis ipsa est sapiente repellendus.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Body>
-              <AppLoginForm/>
-            </Card.Body>
-          </Card>
+        return (
+        <Card>
+          <Card.Img className="App-logo" variant="top" src={logo} />
+          <Card.Body>
+            <Card.Title>Some Info</Card.Title>
+            <Card.Text>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem repudiandae eum aliquam sunt consectetur voluptate nisi beatae. Voluptatibus incidunt, veritatis alias dolorum ipsum dolores blanditiis ipsa est sapiente repellendus.
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+        );
+      case "login":
+        return (
+        <Card>
+          <Card.Body>
+            <AppLoginForm/>
+          </Card.Body>
+        </Card>
+        );
+      case "settings":
+        return (
           <Card>
             <Card.Body>
               <div className={"App-body"}>
@@ -98,7 +77,54 @@ function App() {
               </div>
             </Card.Body>
           </Card>
-        {/* </CardGroup> */}
+        );
+      default:
+        return (
+        <Card>
+          {/* <Card.Img className="App-logo" variant="top" src={logo} /> */}
+          <Card.Body>
+            <Card.Title>Sorry, but this page does not exist.</Card.Title>
+            {/* <Card.Text>
+            </Card.Text> */}
+            <Button variant="primary">Go back</Button>
+          </Card.Body>
+        </Card>
+        );
+    }
+  }
+
+  function handleNavbarCallback(val:ClickEvent) {
+    switch (val.id) {
+      case "home":
+        setShowOverlay(!showOverlay);
+        console.log(showOverlay); // Open/close overlay
+        setPage("home");
+        break;
+    case "search":
+      console.log("search");  
+      // setPage("")
+      break;
+    case "settings":
+      console.log("settings");  
+      setPage("settings");
+      break;
+    case "account":
+      console.log("account");
+      setPage("login");
+      break;
+    
+      default:
+        break;
+    }
+  }
+
+  return (
+    
+    <div className="App">
+      <Container>
+        <AppNavbar callback={handleNavbarCallback}/>
+        {{loaded} && SidebarExampleSidebar()}
+        {resolvePage()}
       </Container>
     </div>
   );

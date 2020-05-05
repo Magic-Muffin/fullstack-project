@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import AppSetting from '../config';
 import { Form, Button } from 'react-bootstrap';
-
+import {SHA256} from 'crypto-js';
 
 interface Props {
     
@@ -11,8 +11,18 @@ interface Props {
 const AppLoginForm: React.FC<Props> = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        event.persist();
+        var data: string = JSON.stringify({
+          email: email,
+          password: SHA256(password)
+        });
+        fetch(AppSetting.formAction, {
+          method: 'POST',
+          body: data
+        });
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -21,9 +31,10 @@ const AppLoginForm: React.FC<Props> = () => {
         if (event.target.type === "password") setPassword(event.target.value);
     }
 
+
     return(
     <>
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" onChange={handleChange} value={email}/>
