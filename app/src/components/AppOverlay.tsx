@@ -2,11 +2,12 @@ import React, {useState, useRef} from 'react';
 import { Button, Overlay } from 'react-bootstrap';
 
 interface Props {
-
+  show: boolean;
+  callback: (arg: boolean) => void
 }
 
-const AppOverlay: React.FC<Props> = () => {
-    const [show, setShow] = useState(false);
+const AppOverlay: React.FC<Props> = (props: Props) => {
+    const [show, setShow] = useState<boolean>(props.show);
     const el = useRef<any>(null);
     const onButtonClick = () => {
   

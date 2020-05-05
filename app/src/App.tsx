@@ -7,6 +7,7 @@ import useFetch from './hooks/useFetch';
 import AppOverlay from './components/AppOverlay';
 import AppNavbar from './components/AppNavbar';
 import AppLoginForm from './components/AppLoginForm';
+import { Container, Card, Button, CardGroup } from 'react-bootstrap';
 
 const SidebarExampleSidebar = () => {
   const [visible, setVisible] = useState(false)
@@ -32,7 +33,9 @@ const SidebarExampleSidebar = () => {
 
 function App() {
   
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [showOverlay, setShowOverlay] = useState<boolean>(false);
+
   useEffect(()=>{
     setLoaded(true);
   }, []);
@@ -43,7 +46,8 @@ function App() {
   function handleNavbarCallback(val:ClickEvent) {
     switch (val.id) {
       case "home":
-        console.log("home");  
+        setShowOverlay(!showOverlay);
+        console.log(showOverlay); // Open/close overlay
         break;
     
     case "search":
@@ -59,21 +63,39 @@ function App() {
   return (
     
     <div className="App">
-      <AppNavbar callback={handleNavbarCallback}/>
-      {{loaded} && SidebarExampleSidebar()}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        
-        
-      </header>
-      <div className={"App-body"}>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <AppLoginForm></AppLoginForm>
-        <TextField text="something"/>
-        <AppOverlay></AppOverlay>
-      </div>
+      <Container>
+        <AppNavbar callback={handleNavbarCallback}/>
+        {{loaded} && SidebarExampleSidebar()}
+        {/* <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+        </header> */}
+        {/* <CardGroup> */}
+          <Card>
+            <Card.Img className="App-logo" variant="top" src={logo} />
+            <Card.Body>
+              <Card.Title>Some Info</Card.Title>
+              <Card.Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem repudiandae eum aliquam sunt consectetur voluptate nisi beatae. Voluptatibus incidunt, veritatis alias dolorum ipsum dolores blanditiis ipsa est sapiente repellendus.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Body>
+              <AppLoginForm/>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Body>
+              <div className={"App-body"}>
+                <TextField text="something"/>
+                <AppOverlay show={showOverlay} callback={(s)=> setShowOverlay(s)}/>
+              </div>
+            </Card.Body>
+          </Card>
+        {/* </CardGroup> */}
+      </Container>
     </div>
   );
 }
