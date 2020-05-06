@@ -11,3 +11,4 @@ This is just an index for documentation on the libraries used. Click on the link
 | [`crypto-js`](https://cryptojs.gitbook.io/docs/)                                                      | Client-side encryption                    | Low       | Uses one function. Can easily be replaced. |
 | [`react-fontawesome`](https://github.com/FortAwesome/react-fontawesome)                               | Icons                                     | Medium    | Custom fonts eventually. Can be replaced. |
 | [`react-cookie`](https://github.com/reactivestack/cookies/tree/master/packages/react-cookie/#readme)  | For handling cookies.                     | Low       | Not yet used. |
+| [`react-router-dom`](https://reacttraining.com/react-router/web/guides/quick-start)  | For handling routes.                     | High       | URL routing. Don't need history because of this. |
