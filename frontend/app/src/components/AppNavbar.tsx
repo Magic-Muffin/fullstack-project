@@ -3,6 +3,7 @@ import React, {} from 'react';
 import {Nav, Navbar, Form, FormControl, Button, NavItem} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTh, faCog, faUser } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom';
 
 
 interface Props {
@@ -49,9 +50,11 @@ const AppNavbar: React.FC<Props> = (props) => {
     return(
         <Navbar bg="dark" variant="dark" fixed="top">
             <NavItem><Navbar.Brand><FontAwesomeIcon onClick={handleClick} icon={faTh}/></Navbar.Brand></NavItem>
-            <Navbar.Brand>Cool Beans</Navbar.Brand> 
+            <Link to="/"><Navbar.Brand>Cool Beans</Navbar.Brand></Link>
             <Nav className="mr-auto">
-            <Nav.Link onSelect={handleSelect} eventKey={"link-home"}>Home</Nav.Link>
+            <Nav.Link eventKey={"link-home"}><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link  eventKey={"link-home"}><Link to="/login">Login</Link></Nav.Link>
+            <Nav.Link  eventKey={"link-home"}><Link to="/register">Register</Link></Nav.Link>
             {/* <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link> */}
             </Nav>

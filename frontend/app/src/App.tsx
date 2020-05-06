@@ -8,6 +8,10 @@ import AppOverlay from './components/AppOverlay';
 import AppNavbar from './components/AppNavbar';
 import AppLoginForm from './components/AppLoginForm';
 import { Container, Card, Button } from 'react-bootstrap';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
 
 const SidebarExampleSidebar = () => {
   const [visible, setVisible] = useState(false)
@@ -48,16 +52,16 @@ function App() {
     switch (page) {
       case "home":
         return (
-        <Card>
-          <Card.Img className="App-logo" variant="top" src={logo} />
-          <Card.Body>
-            <Card.Title>Some Info</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem repudiandae eum aliquam sunt consectetur voluptate nisi beatae. Voluptatibus incidunt, veritatis alias dolorum ipsum dolores blanditiis ipsa est sapiente repellendus.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+          <Card>
+            <Card.Img className="App-logo" variant="top" src={logo} />
+            <Card.Body>
+              <Card.Title>Some Info</Card.Title>
+              <Card.Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem repudiandae eum aliquam sunt consectetur voluptate nisi beatae. Voluptatibus incidunt, veritatis alias dolorum ipsum dolores blanditiis ipsa est sapiente repellendus.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
         );
       case "login":
         return (
@@ -119,14 +123,19 @@ function App() {
   }
 
   return (
-    
-    <div className="App">
-      <Container>
+    <BrowserRouter>
+      <Container className="App">
         <AppNavbar callback={handleNavbarCallback}/>
-        {{loaded} && SidebarExampleSidebar()}
-        {resolvePage()}
+        <Switch>
+          {/* {{loaded} && SidebarExampleSidebar()} */}
+
+          <Route path="/" exact component={HomePage}/>
+          <Route path="/login" exact component={LoginPage}/>
+          <Route path="/register" exact component={RegisterPage}/>
+          {/* {resolvePage()} */}
+        </Switch>
       </Container>
-    </div>
+    </BrowserRouter>
   );
 }
 
