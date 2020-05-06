@@ -52,11 +52,9 @@ const AppNavbar: React.FC<Props> = (props) => {
             <NavItem><Navbar.Brand><FontAwesomeIcon onClick={handleClick} icon={faTh}/></Navbar.Brand></NavItem>
             <Link to="/"><Navbar.Brand>Cool Beans</Navbar.Brand></Link>
             <Nav className="mr-auto">
-            <Nav.Link eventKey={"link-home"}><Link to="/">Home</Link></Nav.Link>
-            <Nav.Link  eventKey={"link-home"}><Link to="/login">Login</Link></Nav.Link>
-            <Nav.Link  eventKey={"link-home"}><Link to="/register">Register</Link></Nav.Link>
-            {/* <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+            <Nav.Link as="li"><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link as="li"><Link to="/login">Login</Link></Nav.Link>
+            <Nav.Link as="li"><Link to="/register">Register</Link></Nav.Link>
             </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
