@@ -7,3 +7,11 @@
   - [ ] Login Page.
   - [ ] Register Page.
   - [ ] Welcome Page.
+
+- Backend
+  - [ ] Database
+
+- DevOps
+  - [ ] Docker HTTPS
+  - [ ] Auto deploy
+  - [ ] CI (?)
