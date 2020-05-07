@@ -16,3 +16,4 @@ COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "api.dll"]
 
 EXPOSE 5000
+EXPOSE 80

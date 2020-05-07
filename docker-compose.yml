@@ -18,7 +18,7 @@ services:
         # environment:
         #     DB_CONN_STRING: "host=db;port=${DB_PORT};database=${DB_DATABASE};username=${DB_USERNAME};password=${DB_PASSWORD}"
         ports:
-            - "5001:5000"
+            - "5000:80"
         networks: 
             backend:
 networks:

@@ -21,7 +21,7 @@ function App() {
     setLoaded(true);
   }, []);
 
-  useFetch("https://localhost:5001/WeatherForecast/");
+  useFetch("http://localhost:5000/WeatherForecast/");
 
   function handleNavbarCallback(val:ClickEvent) {
     switch (val.id) {
