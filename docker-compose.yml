@@ -11,7 +11,16 @@ services:
             - "${PROXY_PORT}:80"
         volumes:
             - "${STATIC_FILE_VOLUME}:/srv/images"
-    
+    api:
+        build:
+            context: ./backend/api
+            dockerfile: Dockerfile
+        # environment:
+        #     DB_CONN_STRING: "host=db;port=${DB_PORT};database=${DB_DATABASE};username=${DB_USERNAME};password=${DB_PASSWORD}"
+        ports:
+            - "5001:5000"
+        networks: 
+            backend:
 networks:
     frontend: # Cannot proxy pass from one network to another via nginx
     backend:
