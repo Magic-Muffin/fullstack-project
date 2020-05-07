@@ -21,7 +21,7 @@ function App() {
     setLoaded(true);
   }, []);
 
-  useFetch("https://swapi.dev/api/planets/1/?format=wookiee");
+  useFetch("https://localhost:5001/WeatherForecast/");
 
   function handleNavbarCallback(val:ClickEvent) {
     switch (val.id) {
@@ -53,12 +53,9 @@ function App() {
       <Container className="App">
         <AppNavbar callback={handleNavbarCallback}/>
         <Switch>
-          {/* {{loaded} && SidebarExampleSidebar()} */}
-
           <Route path="/" exact component={HomePage}/>
           <Route path="/login" exact component={LoginPage}/>
           <Route path="/register" exact component={RegisterPage}/>
-          {/* {resolvePage()} */}
         </Switch>
       </Container>
     </BrowserRouter>

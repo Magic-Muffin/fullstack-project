@@ -4,11 +4,12 @@ import {useEffect} from 'react';
 
 const useFetch = (url: string) =>
 {
+    
     useEffect(()=>{
         fetch(url).then(res=>{
-            res.text();
-        }).then(y => {
-            console.log(y);
+            res.json().then(y => {
+                console.log(y);
+            });
         });
 
     },[url]);
