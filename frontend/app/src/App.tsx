@@ -21,8 +21,9 @@ function App() {
     setLoaded(true);
   }, []);
 
-  useFetch("http://localhost:5000/WeatherForecast/");
-
+  const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+  useFetch(url);
+  
   function handleNavbarCallback(val:ClickEvent) {
     switch (val.id) {
       case "home":
