@@ -1,6 +1,5 @@
 
 import React, {useState} from 'react';
-import AppSetting from '../config';
 import { Form, Button } from 'react-bootstrap';
 import {SHA256} from 'crypto-js';
 
@@ -17,12 +16,16 @@ const AppLoginForm: React.FC<Props> = () => {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         event.persist();
-        var data: string = JSON.stringify({
+        var requestHeaders = new Headers();
+        requestHeaders.set("Content-Type", "application/json");
+        const data: string = JSON.stringify({
           email: email,
           password: SHA256(password)
         });
-        fetch(AppSetting.formAction, {
+        const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+        fetch(url, {
           method: 'POST',
+          headers: requestHeaders,
           body: data
         });
     }

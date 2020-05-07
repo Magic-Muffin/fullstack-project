@@ -25,5 +25,15 @@ namespace api.Controllers
         {
            return service.getAll();
         }
+
+        [HttpPost()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public string PostTest([FromBody] object text)
+        {
+        // _logger.Log.Information(text.ToString());
+            return text.ToString();
+        }
+    
     }
 }
