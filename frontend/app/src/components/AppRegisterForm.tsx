@@ -12,32 +12,52 @@ const AppLoginForm: React.FC<Props> = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [processing, setProcessing] = useState<boolean>(false);
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         event.persist();
+
         var requestHeaders = new Headers();
         requestHeaders.set("Content-Type", "application/json");
+
         const data: string = JSON.stringify({
           email: email,
           password: SHA256(password)
         });
+
         const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+        setProcessing(true);
         fetch(url, {
           method: 'POST',
           headers: requestHeaders,
           body: data
+        }).then((response)=>{
+          response.json().then((res)=>{
+            console.log(res);
+            setProcessing(false);
+          })
         });
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         event.preventDefault();
-        if (event.target.type === "username") setUsername(event.target.value);
-        if (event.target.type === "email") setEmail(event.target.value);
-        if (event.target.type === "password") setPassword(event.target.value);
-        if (event.target.type === "confirmPassword") setConfirmPassword(event.target.value);
-    }
+        switch (event.target.type) {
+          case "username":
+            setUsername(event.target.value);
+            break;
+          case "email":
+            setEmail(event.target.value);
+            break;
+          case "password":
+            setPassword(event.target.value);
+            break;
+          case "confirmPassword":
+            setConfirmPassword(event.target.value);
+            break;
 
+        }
+    }
 
     return(
     <>

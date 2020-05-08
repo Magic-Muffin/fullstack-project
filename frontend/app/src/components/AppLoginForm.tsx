@@ -11,6 +11,7 @@ interface Props {
 const AppLoginForm: React.FC<Props> = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [processing, setProcessing] = useState<boolean>(false);
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -22,10 +23,16 @@ const AppLoginForm: React.FC<Props> = () => {
           password: SHA256(password)
         });
         const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+        setProcessing(true);
         fetch(url, {
           method: 'POST',
           headers: requestHeaders,
           body: data
+        }).then((response)=>{
+          response.json().then((res)=>{
+            console.log(res);
+            setProcessing(false);
+          })
         });
     }
 
