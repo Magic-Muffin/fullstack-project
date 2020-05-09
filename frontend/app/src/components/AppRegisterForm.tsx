@@ -26,7 +26,7 @@ const AppLoginForm: React.FC<Props> = () => {
           password: SHA256(password)
         });
 
-        const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+        const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/GameInfo/" : "https://localhost:5001/GameInfo/";
         setProcessing(true);
         fetch(url, {
           method: 'POST',

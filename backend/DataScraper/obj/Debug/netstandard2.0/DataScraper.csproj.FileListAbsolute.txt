@@ -1,0 +1,8 @@
+C:\dev\projects\fullstack-project\backend\DataScraper\bin\Debug\netstandard2.0\DataScraper.deps.json
+C:\dev\projects\fullstack-project\backend\DataScraper\bin\Debug\netstandard2.0\DataScraper.dll
+C:\dev\projects\fullstack-project\backend\DataScraper\bin\Debug\netstandard2.0\DataScraper.pdb
+C:\dev\projects\fullstack-project\backend\DataScraper\obj\Debug\netstandard2.0\DataScraper.csprojAssemblyReference.cache
+C:\dev\projects\fullstack-project\backend\DataScraper\obj\Debug\netstandard2.0\DataScraper.AssemblyInfoInputs.cache
+C:\dev\projects\fullstack-project\backend\DataScraper\obj\Debug\netstandard2.0\DataScraper.AssemblyInfo.cs
+C:\dev\projects\fullstack-project\backend\DataScraper\obj\Debug\netstandard2.0\DataScraper.dll
+C:\dev\projects\fullstack-project\backend\DataScraper\obj\Debug\netstandard2.0\DataScraper.pdb

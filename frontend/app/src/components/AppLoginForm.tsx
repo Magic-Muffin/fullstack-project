@@ -22,24 +22,30 @@ const AppLoginForm: React.FC<Props> = () => {
           email: email,
           password: SHA256(password)
         });
-        const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/WeatherForecast/" : "https://localhost:5001/WeatherForecast/";
+        const url = (process.env.NODE_ENV === 'production') ? "http://localhost:5000/GameInfo/" : "https://localhost:5001/GameInfo/";
         setProcessing(true);
         fetch(url, {
           method: 'POST',
           headers: requestHeaders,
           body: data
         }).then((response)=>{
-          response.json().then((res)=>{
-            console.log(res);
-            setProcessing(false);
-          })
+            return response.json().then((res)=>{
+              console.log(res);
+              setProcessing(false);
+            });
         });
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         event.preventDefault();
-        if (event.target.type === "email") setEmail(event.target.value);
-        if (event.target.type === "password") setPassword(event.target.value);
+        switch (event.target.type) {
+          case "email":
+            setEmail(event.target.value);
+            break;
+          case "password":
+            setPassword(event.target.value);
+            break;   
+        }
     }
 
 
@@ -61,15 +67,8 @@ const AppLoginForm: React.FC<Props> = () => {
       <Form.Group controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
+      {(!processing) ? <Button variant="primary" type="submit">Login</Button> : <div>Processing</div>}
     </Form>
-      {/* <form onSubmit={handleSubmit} action={AppSetting.formAction}>
-        <input type={"email"} onChange={handleChange} value={email}></input>
-        <input type={"password"} onChange={handleChange} value={password}></input>
-        <input type={"submit"} value={"Login"}></input>
-      </form> */}
     </>
     );
 }
