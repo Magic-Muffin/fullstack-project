@@ -33,7 +33,7 @@ const AppLoginForm: React.FC<Props> = () => {
           headers: requestHeaders,
           body: data
         }).then((response)=>{
-          response.json().then((res)=>{
+          return response.json().then((res)=>{
             console.log(res);
             setProcessing(false);
           })
@@ -85,9 +85,7 @@ const AppLoginForm: React.FC<Props> = () => {
         <Form.Control type="password" placeholder="Password"  onChange={handleChange} value={confirmPassword}/>
       </Form.Group>
       
-      <Button variant="primary" type="submit">
-        Register
-      </Button>
+      {(!processing)?<Button variant="primary" type="submit">Register</Button>:<div>Processing</div>}
     </Form>
       {/* <form onSubmit={handleSubmit} action={AppSetting.formAction}>
         <input type={"email"} onChange={handleChange} value={email}></input>
